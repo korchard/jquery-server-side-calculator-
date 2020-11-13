@@ -23,7 +23,7 @@ function doMath(event) {
     //let subtract = $('#subtract').on('click', doSubtracting);
     //let multiply = $('#multiply').on('click', doMultiplication);
     //let divide = $('#divide').on('click', doDivide);
-    if ()
+    
   
     $.ajax({
         method: 'POST',

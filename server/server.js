@@ -25,10 +25,9 @@ app.post('/calculator', (req, res) => {
     let numeroUno = req.body.num1; // value input from client.js
     let numeroDos = req.body.num2; // value input from client.js
     console.log('Getting mathematics data...', numeroUno, numeroDos);
-
-    let result = numeroUno + numeroDos;
     
-    mathData.push(result);
+    mathData.push(numeroUno);
+    mathData.push(numeroDos);
     res.sendStatus(200); // 200 is an OK status
 })
 
