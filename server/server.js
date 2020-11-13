@@ -13,7 +13,24 @@ app.use( express.static('server/public') );
 // Tell's express how to deal with incoming data
 app.use( bodyParser.urlencoded( {extended: true} ) );
 
+let mathData = [];
 
+// route to GET
+app.get('/calculator', (req, res) => {
+    console.log('Sending equation data...');
+    res.send(mathData);
+})
+
+app.post('/calculator', (req, res) => {
+    let numeroUno = req.body.num1; // value input from client.js
+    let numeroDos = req.body.num2; // value input from client.js
+    console.log('Getting mathematics data...', numeroUno, numeroDos);
+
+    let result = numeroUno + numeroDos;
+    
+    mathData.push(result);
+    res.sendStatus(200); // 200 is an OK status
+})
 
 // ---- End of our routes ------------------------------------
 
