@@ -11,6 +11,7 @@ function onReady() {
     //$('#divide').on('click', doDivide);
     $('#equals').on('click', doMath);
     $('#clear').on('click', doClear);
+    returnMath();
 }
 
 function doMath(event) {
@@ -18,10 +19,11 @@ function doMath(event) {
 
     let value1 = $('#value1').val();
     let value2 = $('#value2').val();
-    let add = ('#add').on('click', doAdding);
-    let subtract = $('#subtract').on('click', doSubtracting);
-    let multiply = $('#multiply').on('click', doMultiplication);
-    let divide = $('#divide').on('click', doDivide);
+    //let add = ('#add').on('click', doAdding);
+    //let subtract = $('#subtract').on('click', doSubtracting);
+    //let multiply = $('#multiply').on('click', doMultiplication);
+    //let divide = $('#divide').on('click', doDivide);
+    if ()
   
     $.ajax({
         method: 'POST',
@@ -29,7 +31,7 @@ function doMath(event) {
         data: {
             num1: value1,
             num2: value2
-            
+            //operator: 
         }
     }).then( function(response) {
         console.log('Math happened!');
@@ -47,7 +49,7 @@ function returnMath() {
         url: '/calculator'
     }).then( function(response) {
         console.log('Numbers have been calculated', response)
-        //renderCats(response);
+        renderMath(response);
     }).catch( function(error) {
         console.log('Error', error);
         alert('OOPS! There is an ERROR!');
@@ -59,5 +61,13 @@ function doClear() {
     $('#value2').val(); // empty inputs
 }
 
+function renderMath(mathData) {
+    console.log();
+
+    $('#showTheMath').empty();
+    for (let item of mathData) {
+        $('#showTheMath').append(`<li>${item}</li>`);
+    }
+}
 
 
