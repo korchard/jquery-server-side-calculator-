@@ -33,7 +33,7 @@ function doMath() {
         data: expression // the expression object is sent to the server side
     }).then( function(response) {
         console.log('Math happened!');
-        returnMath(); // calls this function to 
+        returnMath(); // calls this function to then retrieve the mathData from server side
     }).catch( function(error) {
         console.log('Error', error);
         alert('OOPS! There is an ERROR!');
@@ -48,6 +48,7 @@ function returnMath() {
     }).then( function(response) { // retrieves the mathData from the server side
         console.log('Numbers have been calculated', response)
         renderMath(response); // need to pass in the response information here so we can render it to the DOM
+        renderAnswer(response);
     }).catch( function(error) {
         console.log('Error', error);
         alert('OOPS! There is an ERROR!');
@@ -57,20 +58,25 @@ function returnMath() {
 function doClear() { // clears the input fields
     $('#numsToMath').val('');
     $('#numsThusFar').val(''); 
+    $('#answer').empty();
 } // end doClear function
 
 function renderMath(mathData) {
     $('#showTheMath').empty(); // empty the ul so that the already stored data doesn't reiterate
-    // conditionals to change the /operators to actual operator signs
-    for (let i = 0; i < mathData.length; i++) {
-        
+    for (let item of mathData) {
     // appends the new equation to the DOM
-        $('#showTheMath').append(`<li>${mathData[i].num1} ${mathData[i].operator} ${mathData[i].num2} = ${mathData[i].result}</li>`);
-        $('#answer').empty(); // clears the previous equation's answer
-        $('#answer').append(`${mathData[mathData.length - 1].result}`); // puts the most recent equation's answer onto the DOM
+        $('#showTheMath').append(`<li>${item.num1} ${item.operator} ${item.num2} = ${item.result}</li>`);
     } // end for loop
 } // end renderMath function 
 
 function notWorking() {
     alert('Calculator is broken...try the manual input below!');
-}
+} // end notWorking function
+
+function renderAnswer(mathData) {
+    for (let item of mathData) {
+        $('#answer').empty(); // want it to empty the answer each time it loops through, so that it does't concatenate
+        $('#answer').append(`${item.result}`);
+    } // end for loop
+    //$('#answer').append(`${mathData.result}`);
+} // end renderAnswer function

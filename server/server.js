@@ -13,7 +13,9 @@ app.use( express.static('server/public') );
 // Tell's express how to deal with incoming data
 app.use( bodyParser.urlencoded( {extended: true} ) );
 
+//const mathCalc = require('./modules/calculation');
 let calculatorArray = []; // array to hold the object information while doing operations on server side
+let result = 0; // used for the equation
 
 // route to send info to client-side
 app.get('/calculator', (req, res) => {
@@ -21,20 +23,19 @@ app.get('/calculator', (req, res) => {
     let mathData = []; //array to push an object into to send back to client side
     
     for (objects of calculatorArray) {
-        let result = 0; // used for the equation
         // conditional to determin which operator is used and how to work with the numbers
         if (objects.operator == '/add') { 
-            result = Number(objects.num1) + Number(objects.num2);
             objects.operator = '+';
+            result = Number(objects.num1) + Number(objects.num2);
         } else if (objects.operator == '/subtract') {
-            result = Number(objects.num1) - Number(objects.num2);
             objects.operator = '-';
+            result = Number(objects.num1) - Number(objects.num2);
         } else if (objects.operator == '/multiply') {
-            result = Number(objects.num1) * Number(objects.num2);
             objects.operator = '*';
+            result = Number(objects.num1) * Number(objects.num2);
         } else if (objects.operator == '/divide') {
-            result = Number(objects.num1) / Number(objects.num2);
             objects.operator = '/';
+            result = Number(objects.num1) / Number(objects.num2);
         } // end conditionals
             mathData.push({ // object of information that is sent back to the client side
                 num1: objects.num1,
