@@ -21,7 +21,7 @@ app.get('/calculator', (req, res) => {
     let mathData = []; //array to push an object into to send back to client side
     for (objects of calculatorArray) {
         let result = null; // used for the equation
-        // conditional to determin which operator is used and how 
+        // conditional to determin which operator is used and how to work with the numbers
         if (objects.operator == '/add') { 
             result = Number(objects.num1) + Number(objects.num2);
         } else if (objects.operator == '/subtract') {
@@ -31,7 +31,7 @@ app.get('/calculator', (req, res) => {
         } else if (objects.operator == '/divide') {
             result = Number(objects.num1) / Number(objects.num2);
         }
-        mathData.push({
+        mathData.push({ // object of information that is sent back to the client side
             num1: objects.num1,
             num2: objects.num2,
             operator: objects.operator,
@@ -43,7 +43,7 @@ app.get('/calculator', (req, res) => {
 
 // route receiving info from client-side
 app.post('/calculator', (req, res) => {
-    let calcData = req.body
+    let calcData = req.body // push the expression information into the global array on server side
     calculatorArray.push(calcData);
     res.sendStatus(200); // 200 is an OK status
 })
