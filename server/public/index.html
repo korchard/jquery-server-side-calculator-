@@ -10,18 +10,47 @@
 </head>
 <body>
     <h1>jQuery Server Side Calculator</h1>
-    <form>
-        <input type="number" placeholder="Input value" id="value1">
-            <button id="add">+</button>
-            <button id="subtract">-</button>
-            <button id="multiply">*</button>
-            <button id="divide">/</button>
-        <input type="number" placeholder="Input value" id="value2">
-            <button id="equals">=</button>
-            <button id="clear">C</button>
-    </form>
+    <div>
+        <input type="text" id="numsToMath"/>
+        <button class="calc" id="add">+</button>
+        <button class="calc" id="subtract">-</button>
+        <button class="calc" id="multply">*</button>
+        <button class="calc" id="divide">/</button>
+        <input type="text" id="numsThusFar"/>
+        <button class="calc" id="equals">=</button>
+        <button id="clear">C</button>
+    <div>
+    <div class="calculatorBox">
+        <div>
+            <button class="calc" id="one">1</button>
+            <button class="calc" id="two">2</button>
+            <button class="calc" id="three">3</button>
+            <button class="calc" id="add">+</button>
+        </div>
+        <div>
+            <button class="calc" id="four">4</button>
+            <button class="calc" id="five">5</button>
+            <button class="calc" id="six">6</button>
+            <button class="calc" id="subtract">-</button>
+        </div>
+        <div>
+            <button class="calc" id="seven">7</button>
+            <button class="calc" id="eight">8</button>
+            <button class="calc" id="nine">9</button>
+            <button class="calc" id="multply">*</button>
+        </div>
+        <div>
+            <button class="calc" id="zero">0</button>
+            <button class="calc" id="decimal">.</button>
+            <button class="calc" id="equals">=</button>
+            <button class="calc" id="divide">/</button>
+        </div>
+        <div>
+            <p>Answer: <span id="answer"></span></p>
+        </div>
+    </div>
     <main>
-        <h3>Logged Results to the Equations</h3>
+        <h3>Logged Answers to Previous Equations</h3>
         <ul id="showTheMath">
             <!--jQuery will add this info-->
         </ul>

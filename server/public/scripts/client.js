@@ -2,40 +2,67 @@ console.log('Hello javaScript!');
 
 $(document).ready(onReady);
 
-function onReady() {
-    console.log('Hello jQuery!');
-
-    //$('#add').on('click', doAdding);
-    //$('#subtract').on('click', doSubtracting);
-    //$('#multiply').on('click', doMultiplication);
-    //$('#divide').on('click', doDivide);
-    $('#equals').on('click', doMath);
-    $('#clear').on('click', doClear);
-    returnMath();
+let expression = {
+    num1: null,
+    num2: null,
+    operator: null
 }
 
-function doMath(event) {
-    event.preventDefault();
+function onReady() {
+    console.log('Hello jQuery!');
+    $('#add').on('click', function() {expression.operator = '/add'});
+    $('#subtract').on('click', function() {expression.operator = '/subtract'});
+    $('#multiply').on('click', function() {expression.operator = '/multiply'});
+    $('#divide').on('click', function() {expression.operator = '/divide'});
+    //$('#calculatorBox').on('click', whichButton);
+    $('#clear').on('click', doClear);
+    $('#equals').on('click', doMath);
+    returnMath();
+    //whichButton();
+}
 
-    let value1 = $('#value1').val();
-    let value2 = $('#value2').val();
-    //let add = ('#add').on('click', doAdding);
-    //let subtract = $('#subtract').on('click', doSubtracting);
-    //let multiply = $('#multiply').on('click', doMultiplication);
-    //let divide = $('#divide').on('click', doDivide);
-    
-  
+/*$(window).on("load", function () {
+    console.log('hello from jq');
+    // add a listeneer to all buttons
+    $('.numpad').on('click', whichButton);
+});*/
+
+// John's suggestion for which one was clicked on
+/*function whichButton() {
+    let buttonId = $(this).text();
+    console.log(buttonId);
+    $('#calculatorBox').val(function() {
+        //$('#numsThusFar').append(`${this.value} + ${buttonId}`)
+        //return this.value + '' + buttonId;
+    })
+        switch(buttonId) {
+            case '+':
+                doAdding();
+                break;
+            case '-':
+                doSubtracting();
+                break;
+            case '*':
+                doMultiplying();
+                break;
+            case '/':
+                doDividing();
+                break;
+        }
+}*/
+
+function doMath() {
+
+    expression.num1 = $('#numsToMath').val();
+    expression.num2 = $('#numsThusFar').val();
+
     $.ajax({
         method: 'POST',
         url: '/calculator',
-        data: {
-            num1: value1,
-            num2: value2
-            //operator: 
-        }
+        data: expression
     }).then( function(response) {
         console.log('Math happened!');
-        //getCats();
+        returnMath();
     }).catch( function(error) {
         console.log('Error', error);
         alert('OOPS! There is an ERROR!');
@@ -57,17 +84,26 @@ function returnMath() {
 }
 
 function doClear() {
-    $('#value1').val(); // empty inputs
-    $('#value2').val(); // empty inputs
+    $('#numsToMath').val('');
+    $('#numsThusFar').val(''); // clear calculations
 }
 
 function renderMath(mathData) {
-    console.log();
-
     $('#showTheMath').empty();
+
     for (let item of mathData) {
-        $('#showTheMath').append(`<li>${item}</li>`);
-    }
+        if (item.operator == '/add') {
+            item.operator = '+';
+        } else if (item.operator == '/subtract') {
+            item.operator = '-';
+        } else if (item.operator == '/multiply') {
+            item.operator = '*';
+        } else if (item.operator == '/divide') {
+            item.operator = '/';
+        }
+
+        $('#showTheMath').append(`<li>${item.num1} ${item.operator} ${item.num2} = ${item.result}</li>`);
+        $('#answer').empty();
+        $('#answer').append(`${item.result}`);
+    } 
 }
-
-

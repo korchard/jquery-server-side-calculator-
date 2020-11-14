@@ -13,21 +13,38 @@ app.use( express.static('server/public') );
 // Tell's express how to deal with incoming data
 app.use( bodyParser.urlencoded( {extended: true} ) );
 
-let mathData = [];
+let calculatorArray = []; // array to hold the object information while doing operations on server side
 
-// route to GET
+// route to send info to client-side
 app.get('/calculator', (req, res) => {
     console.log('Sending equation data...');
+    let mathData = []; //array to push an object into to send back to client side
+    for (objects of calculatorArray) {
+        let result = null; // used for the equation
+        // conditional to determin which operator is used and how 
+        if (objects.operator == '/add') { 
+            result = Number(objects.num1) + Number(objects.num2);
+        } else if (objects.operator == '/subtract') {
+            result = Number(objects.num1) - Number(objects.num2);
+        } else if (objects.operator == '/multiply') {
+            result = Number(objects.num1) * Number(objects.num2);
+        } else if (objects.operator == '/divide') {
+            result = Number(objects.num1) / Number(objects.num2);
+        }
+        mathData.push({
+            num1: objects.num1,
+            num2: objects.num2,
+            operator: objects.operator,
+            result: result
+        })
+    }
     res.send(mathData);
 })
 
+// route receiving info from client-side
 app.post('/calculator', (req, res) => {
-    let numeroUno = req.body.num1; // value input from client.js
-    let numeroDos = req.body.num2; // value input from client.js
-    console.log('Getting mathematics data...', numeroUno, numeroDos);
-    
-    mathData.push(numeroUno);
-    mathData.push(numeroDos);
+    let calcData = req.body
+    calculatorArray.push(calcData);
     res.sendStatus(200); // 200 is an OK status
 })
 
