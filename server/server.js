@@ -20,7 +20,7 @@ app.get('/calculator', (req, res) => {
     console.log('Sending equation data...');
     let mathData = []; //array to push an object into to send back to client side
     for (objects of calculatorArray) {
-        let result = null; // used for the equation
+        let result = 0; // used for the equation
         // conditional to determin which operator is used and how to work with the numbers
         if (objects.operator == '/add') { 
             result = Number(objects.num1) + Number(objects.num2);
