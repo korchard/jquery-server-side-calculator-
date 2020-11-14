@@ -16,42 +16,11 @@ function onReady() {
     $('#subtract').on('click', function() {expression.operator = '/subtract'});
     $('#multiply').on('click', function() {expression.operator = '/multiply'});
     $('#divide').on('click', function() {expression.operator = '/divide'});
-    //$('#calculatorBox').on('click', whichButton);
+    $('.calc').on('click', notWorking); // to indicate the calculator doesn't work
     $('#clear').on('click', doClear); // clear button clears inputs when pressed
     $('#equals').on('click', doMath); // when pressed sends the input info and operators to the server side
     returnMath(); // renders the information to the DOM so it does not go away on refresh
-    //whichButton();
 } // end onReady function
-
-/*$(window).on("load", function () {
-    console.log('hello from jq');
-    // add a listeneer to all buttons
-    $('.numpad').on('click', whichButton);
-});*/
-
-// John's suggestion for which one was clicked on
-/*function whichButton() {
-    let buttonId = $(this).text();
-    console.log(buttonId);
-    $('#calculatorBox').val(function() {
-        //$('#numsThusFar').append(`${this.value} + ${buttonId}`)
-        //return this.value + '' + buttonId;
-    })
-        switch(buttonId) {
-            case '+':
-                doAdding();
-                break;
-            case '-':
-                doSubtracting();
-                break;
-            case '*':
-                doMultiplying();
-                break;
-            case '/':
-                doDividing();
-                break;
-        }
-}*/
 
 function doMath() {
 
@@ -93,19 +62,15 @@ function doClear() { // clears the input fields
 function renderMath(mathData) {
     $('#showTheMath').empty(); // empty the ul so that the already stored data doesn't reiterate
     // conditionals to change the /operators to actual operator signs
-    for (let item of mathData) {
-        if (item.operator == '/add') {
-            item.operator = '+';
-        } else if (item.operator == '/subtract') {
-            item.operator = '-';
-        } else if (item.operator == '/multiply') {
-            item.operator = '*';
-        } else if (item.operator == '/divide') {
-            item.operator = '/';
-        }
+    for (let i = 0; i < mathData.length; i++) {
+        
     // appends the new equation to the DOM
-        $('#showTheMath').append(`<li>${item.num1} ${item.operator} ${item.num2} = ${item.result}</li>`);
+        $('#showTheMath').append(`<li>${mathData[i].num1} ${mathData[i].operator} ${mathData[i].num2} = ${mathData[i].result}</li>`);
         $('#answer').empty(); // clears the previous equation's answer
-        $('#answer').append(`${item.result}`); // puts the most recent equation's answer onto the DOM
+        $('#answer').append(`${mathData[mathData.length - 1].result}`); // puts the most recent equation's answer onto the DOM
     } // end for loop
 } // end renderMath function 
+
+function notWorking() {
+    alert('Calculator is broken...try the manual input below!');
+}

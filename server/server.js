@@ -19,25 +19,30 @@ let calculatorArray = []; // array to hold the object information while doing op
 app.get('/calculator', (req, res) => {
     console.log('Sending equation data...');
     let mathData = []; //array to push an object into to send back to client side
+    
     for (objects of calculatorArray) {
         let result = 0; // used for the equation
         // conditional to determin which operator is used and how to work with the numbers
         if (objects.operator == '/add') { 
             result = Number(objects.num1) + Number(objects.num2);
+            objects.operator = '+';
         } else if (objects.operator == '/subtract') {
             result = Number(objects.num1) - Number(objects.num2);
+            objects.operator = '-';
         } else if (objects.operator == '/multiply') {
             result = Number(objects.num1) * Number(objects.num2);
+            objects.operator = '*';
         } else if (objects.operator == '/divide') {
             result = Number(objects.num1) / Number(objects.num2);
-        }
-        mathData.push({ // object of information that is sent back to the client side
-            num1: objects.num1,
-            num2: objects.num2,
-            operator: objects.operator,
-            result: result
+            objects.operator = '/';
+        } // end conditionals
+            mathData.push({ // object of information that is sent back to the client side
+                num1: objects.num1,
+                num2: objects.num2,
+                operator: objects.operator,
+                result: result
         })
-    }
+    } // end for loop
     res.send(mathData);
 })
 

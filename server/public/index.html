@@ -5,55 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="vendor/jquery.min.js"></script>
     <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap-4.5.3-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="styles/style.css"/>
     <title>jQuery Server Side Calculator</title>
 </head>
 <body>
     <h1>jQuery Server Side Calculator</h1>
-    <div>
-        <input type="text" id="numsToMath"/>
-        <button class="calc" id="add">+</button>
-        <button class="calc" id="subtract">-</button>
-        <button class="calc" id="multply">*</button>
-        <button class="calc" id="divide">/</button>
-        <input type="text" id="numsThusFar"/>
-        <button class="calc" id="equals">=</button>
-        <button id="clear">C</button>
-    <div>
     <div class="calculatorBox">
         <div>
-            <button class="calc" id="one">1</button>
-            <button class="calc" id="two">2</button>
-            <button class="calc" id="three">3</button>
-            <button class="calc" id="add">+</button>
+            <input type="text" class="calc" id="notWork"/>
+            <button class="calc btn btn-info">C</button>
         </div>
         <div>
-            <button class="calc" id="four">4</button>
-            <button class="calc" id="five">5</button>
-            <button class="calc" id="six">6</button>
-            <button class="calc" id="subtract">-</button>
+            <button class="calc btn btn-info" id="one">1</button>
+            <button class="calc btn btn-info" id="two">2</button>
+            <button class="calc btn btn-info" id="three">3</button>
+            <button class="calc btn btn-info">+</button>
         </div>
         <div>
-            <button class="calc" id="seven">7</button>
-            <button class="calc" id="eight">8</button>
-            <button class="calc" id="nine">9</button>
-            <button class="calc" id="multply">*</button>
+            <button class="calc btn btn-info" id="four">4</button>
+            <button class="calc btn btn-info" id="five">5</button>
+            <button class="calc btn btn-info" id="six">6</button>
+            <button class="calc btn btn-info">-</button>
         </div>
         <div>
-            <button class="calc" id="zero">0</button>
-            <button class="calc" id="decimal">.</button>
-            <button class="calc" id="equals">=</button>
-            <button class="calc" id="divide">/</button>
+            <button class="calc btn btn-info" id="seven">7</button>
+            <button class="calc btn btn-info" id="eight">8</button>
+            <button class="calc btn btn-info" id="nine">9</button>
+            <button class="calc btn btn-info">*</button>
+        </div>
+        <div>
+            <button class="calc btn btn-info" id="zero">0</button>
+            <button class="calc btn btn-info">.</button>
+            <button class="calc btn btn-info">=</button>
+            <button class="calc btn btn-info">/</button>
+        </div>
+    </div>
+    <div class="functioningCalc">
+        <h3>Functioning Calculator Here</h3>
+        <div class="space">
+            <input class="itWorks" type="text" id="numsToMath"/>
+        </div>
+        <div class="space">
+            <button class="itWorks btn btn-info" id="add">+</button>
+            <button class="itWorks btn btn-info" id="subtract">-</button>
+            <button class="itWorks btn btn-info" id="multiply">*</button>
+            <button class="itWorks btn btn-info" id="divide">/</button>
+        </div>
+        <div class="space">
+            <input class="itWorks" type="text" id="numsThusFar"/>
+        </div>
+        <div class="space">
+            <button class="itWorks btn btn-info" id="equals">=</button>
+            <button class="itWorks btn btn-info" id="clear">C</button>
         </div>
         <div>
             <p>Answer: <span id="answer"></span></p>
         </div>
     </div>
-    <main>
+    <section class="history">
         <h3>Logged Answers to Previous Equations</h3>
         <ul id="showTheMath">
             <!--jQuery will add this info-->
         </ul>
-    </main>
+    </section>
 </body>
 </html>

@@ -1,3 +1,77 @@
 body {
     background-color: darkkhaki;
 }
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.calculatorBox {
+    margin-left: 43%;
+    background-color: darkslategray;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 15px;
+    width: 14%;
+}
+
+.calc {
+    margin: 1px;
+    width: 35px;
+    height: 35px;
+}
+
+#notWork {
+    margin: 1px;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+h3 {
+    text-align: center;
+}
+
+.functioningCalc {
+    margin-top: 3%;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: darkslategray;
+    width: 40%;
+    height: 20%;
+    margin-left: 30%;
+    text-align: center;
+    padding: 1em;
+    color: white;
+}
+
+.space {
+    padding: 5px;
+    display: inline-block;
+}
+
+#numsThusFar {
+    border-radius: 5px;
+}
+
+#numsToMath {
+    border-radius: 5px;
+}
+
+p {
+    font-size: xx-large;
+}
+
+.history {
+    margin: 5%;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: darkslategray;
+    padding: 1em;
+    color: white;
+    font-size: large;
+}
