@@ -78,5 +78,4 @@ function renderAnswer(mathData) {
         $('#answer').empty(); // want it to empty the answer each time it loops through, so that it does't concatenate
         $('#answer').append(`${item.result}`);
     } // end for loop
-    //$('#answer').append(`${mathData.result}`);
 } // end renderAnswer function
