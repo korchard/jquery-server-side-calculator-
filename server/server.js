@@ -15,7 +15,7 @@ app.use( bodyParser.urlencoded( {extended: true} ) );
 
 //const mathCalc = require('./modules/calculation');
 let calculatorArray = []; // array to hold the object information while doing operations on server side
-let result = 0; // used for the equation
+let result = 0;
 
 // route to send info to client-side
 app.get('/calculator', (req, res) => {
@@ -24,26 +24,22 @@ app.get('/calculator', (req, res) => {
     
     for (objects of calculatorArray) {
         // conditional to determin which operator is used and how to work with the numbers
-        if (objects.operator == '/add') { 
-            objects.operator = '+';
+        if (objects.operator == '+') { 
             result = Number(objects.num1) + Number(objects.num2);
-        } else if (objects.operator == '/subtract') {
-            objects.operator = '-';
+        } else if (objects.operator == '-') {
             result = Number(objects.num1) - Number(objects.num2);
-        } else if (objects.operator == '/multiply') {
-            objects.operator = '*';
+        } else if (objects.operator == '*') {
             result = Number(objects.num1) * Number(objects.num2);
-        } else if (objects.operator == '/divide') {
-            objects.operator = '/';
+        } else if (objects.operator == '/') {
             result = Number(objects.num1) / Number(objects.num2);
         } // end conditionals
             mathData.push({ // object of information that is sent back to the client side
                 num1: objects.num1,
                 num2: objects.num2,
                 operator: objects.operator,
-                result: result
-        })
-    } // end for loop
+                result: result 
+            })
+        }
     res.send(mathData);
 })
 

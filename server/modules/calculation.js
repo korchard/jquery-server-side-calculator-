@@ -17,7 +17,7 @@ module.exports = () => {
             objects.operator = '/';
             result = Number(objects.num1) / Number(objects.num2);
         } // end conditionals
-            mathData.result = result;
+            //mathData.result = result;
             mathData.push({ // object of information that is sent back to the client side
                 num1: objects.num1,
                 num2: objects.num2,
