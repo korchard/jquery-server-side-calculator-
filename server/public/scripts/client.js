@@ -63,9 +63,9 @@ function doClear() { // clears the input fields
 
 function renderMath(mathData) {
     $('#showTheMath').empty(); // empty the ul so that the already stored data doesn't reiterate
-    for (let i = 0; i < mathData.length; i++) {
+    for (let item of mathData) {
     // appends the new equation to the DOM
-        $('#showTheMath').append(`<li>${mathData[i].num1} ${mathData[i].operator} ${mathData[i].num2} = ${mathData[i].result}</li>`);
+        $('#showTheMath').append(`<li>${item.num1} ${item.operator} ${item.num2} = ${item.result}</li>`);
     } // end for loop
 } // end renderMath function 
 
@@ -73,7 +73,9 @@ function notWorking() {
     alert('Calculator is broken...try the manual input below!');
 } // end notWorking function
 
-function renderAnswer(mathData) {
-    $('#answer').empty(); // want it to empty the answer each time it loops through, so that it does't concatenate
-    $('#answer').append(`${mathData[mathData.length - 1].result}`);
+function renderAnswer(mathData) { // puts the answer in the calculator
+    for (let item of mathData) {
+        $('#answer').empty(); // want it to empty the answer each time it loops through, so that it does't concatenate
+        $('#answer').append(`${item.result}`);
+    }
 } // end renderAnswer function

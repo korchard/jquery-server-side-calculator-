@@ -40,7 +40,7 @@ app.get('/calculator', (req, res) => {
                 result: result 
             })
         }
-    res.send(mathData);
+    res.send(mathData); // mathData is sent to the client side
 })
 
 // route receiving info from client-side
