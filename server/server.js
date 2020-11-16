@@ -5,7 +5,7 @@ const bodyParser = require('body-parser'); // parse incoming data
 
 const app = express(); // instance of the express server
 
-const port = 5000; // server mailbox
+const port = process.env.PORT || 5000; // server mailbox
 
 // Tell express where to find static files that it can send on request
 app.use( express.static('server/public') );
